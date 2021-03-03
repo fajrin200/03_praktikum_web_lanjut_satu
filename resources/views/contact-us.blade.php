@@ -1,12 +1,7 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@include('layouts.header')
+@include('layouts.sidebar')
+@include('layouts.content')
 
-                <div class="card-body">
-                    <h2>Contact US!</h2>
-                    <script type="text/javascript">
-                        location.href = 'https://www.educastudio.com/contact-us';
-                    </script>
-                </div>
+@yield('contact')
+
+@include('layouts.footer')

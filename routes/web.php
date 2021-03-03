@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,35 +21,20 @@ use App\Http\Controllers\ContactController;
 //     return view('welcome');
 // });
 
-// 1. Halaman Home, menampilkan halaman awal website
-Route::get('/', function (){
-    return view ('home');
-});
+// Auth::routes();
 
-// // 2. Halaman Products menampilkan daftar product ( route prefix)
-Route::prefix('category')->group(function () {
-    Route::get('/list',function() {
-        return view ('product');
-    });
-});
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// 3. Halaman News menampilkan Daftar berita (route param)
-Route::get('/news', [ArticleController::class, 'news']);
-Route::get('/news/{string}', [ArticleController::class, 'newsString']);
+// Route 
+Route::get('/',[HomeController::class,'index']);
 
-// 4. Halaman Program menampilkan Daftar Program (route prefix)
+// Route Prefix
 Route::prefix('/program')->group(function () {
-    Route::get('/{string}', function ($string) {
-        return view('program', ['url' => $string]);
-    });
+    Route::get('/',[ProgramController::class,'program']);
 });
 
-// 5. Halaman About Us menampilkan About Us (route biasa)
-Route::get('/about-us', [AboutController::class, 'about']);
+// Route 
+Route::get('/about',[AboutController::class,'about']);
 
-// 6. Halaman Contact Us menampilkan Contact Us (route resource only)
-Route::get('/contact-us', [ContactController::class, 'index']);
-
-//Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route Resource
+Route::get('/contact',[ContactController::class,'index']);
